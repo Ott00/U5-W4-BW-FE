@@ -7,14 +7,20 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
-import { BackOfficeComponent } from './components/back-office/back-office.component';
+import { ClientsComponent } from './components/clients/clients.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { InvoicesComponent } from './components/invoices/invoices.component';
 
 const routes: Route[] = [
   {
     path: '',
-    component: BackOfficeComponent,
+    component: ClientsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'invoices',
+    component: InvoicesComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -37,7 +43,8 @@ const routes: Route[] = [
     NavbarComponent,
     LoginComponent,
     RegistrationComponent,
-    BackOfficeComponent,
+    ClientsComponent,
+    InvoicesComponent,
   ],
   imports: [
     BrowserModule,

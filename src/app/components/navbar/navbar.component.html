@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-md bg-dark px-3 py-3">
+<nav
+  class="navbar navbar-expand-md bg-custom px-3 py-3 border-bottom border-white"
+>
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="#">EnelG</a>
 
@@ -29,7 +31,15 @@
             [routerLink]="['/']"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Back-Office
+            >Clients
+          </a>
+          <a
+            *ngIf="userLoggedIn"
+            class="nav-link"
+            [routerLink]="['/invoices']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Invoices
           </a>
           <a
             *ngIf="!userLoggedIn"
