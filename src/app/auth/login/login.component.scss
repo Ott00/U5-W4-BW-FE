@@ -1,3 +1,37 @@
 .bg {
-  height: calc(100vh - 65px);
+  height: calc(100vh - 72px);
+  background-color: #1f2125;
+}
+
+.bg-custom {
+  background-color: #1f2125;
+}
+
+.form-control {
+  color: white;
+  font-weight: 500;
+  background-color: #2e3137;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+#register-redirect {
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.form-size {
+  max-width: 600px;
 }
