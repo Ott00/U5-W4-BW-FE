@@ -6,6 +6,7 @@ import { RegisterData } from '../interfaces/register-data';
 import { AuthData } from '../interfaces/auth-data';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoginData } from '../interfaces/login-data';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthService {
   private authSubj = new BehaviorSubject<null | AuthData>(null);
   user$ = this.authSubj.asObservable();
   baseUrl = environment.baseUrl;
-  utente!: AuthData;
+  accessToken!: AuthData;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -27,11 +28,11 @@ export class AuthService {
     );
   }
 
-  login(data: { email: string; password: string }) {
+  login(data: LoginData) {
     return this.http.post<AuthData>(`${this.baseUrl}/auth/login`, data).pipe(
       tap((dataLogin) => {
         this.authSubj.next(dataLogin);
-        this.utente = dataLogin;
+        this.accessToken = dataLogin;
         localStorage.setItem('user', JSON.stringify(dataLogin));
         console.log('Login effettuato');
         this.router.navigate(['/']);
