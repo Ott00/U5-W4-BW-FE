@@ -10,6 +10,7 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import { BackOfficeComponent } from './components/back-office/back-office.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Route[] = [
   {
@@ -26,6 +27,10 @@ const routes: Route[] = [
     component: RegistrationComponent,
   },
   {
+    path: 'user',
+    component: UserComponent,
+  },
+  {
     path: '**',
     redirectTo: '',
   },
@@ -38,6 +43,7 @@ const routes: Route[] = [
     LoginComponent,
     RegistrationComponent,
     BackOfficeComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+<div
+  class="container-fluid"
+  style="height: calc(100vh - 86px); overflow-y: auto"
+>
+  <div class="container d-flex flex-column">
+    <div class="row">
+      <div class="col-md-4 mb-3 g-4" *ngFor="let user of users">
+        <div class="card shadowHover shadow">
+          <div class="card-header headHeight">
+            <h5 class="text-truncate">{{ user.id }}</h5>
+          </div>
+          <div class="card-body d-flex-colomn height pb-0">
+            <p class="card-text text-truncate mb-4">{{ user.name }}.</p>
+            <p class="card-text text-truncate mb-4">{{ user.surname }}.</p>
+            <p class="card-text text-truncate mb-4">{{ user.email }}.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
