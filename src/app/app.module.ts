@@ -11,6 +11,8 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { InvoicesComponent } from './components/invoices/invoices.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Route[] = [
   {
@@ -39,6 +41,10 @@ const routes: Route[] = [
     component: RegistrationComponent,
   },
   {
+    path: 'me',
+    component: ProfileComponent,
+  },
+  {
     path: '**',
     redirectTo: '',
   },
@@ -52,6 +58,7 @@ const routes: Route[] = [
     RegistrationComponent,
     ClientsComponent,
     InvoicesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +66,7 @@ const routes: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent],

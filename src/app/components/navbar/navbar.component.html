@@ -58,6 +58,12 @@
         </div>
       </div>
       <div class="d-none d-md-flex" *ngIf="userLoggedIn">
+        <button
+          class="btn btn-outline-secondary me-2"
+          (click)="goToProfilePage()"
+        >
+          <i class="bi bi-person"></i>
+        </button>
         <button class="btn btn-outline-danger h-100" (click)="logout()">
           <i class="bi bi-box-arrow-right"></i>
         </button>
