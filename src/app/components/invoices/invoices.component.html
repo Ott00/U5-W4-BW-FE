@@ -14,7 +14,6 @@
       <div
         *ngFor="let invoice of response"
         class="bg-white rounded-4 mt-5 flex-grow-1 box-square d-flex align-items-baseline p-3"
-        [ngClass]="{ 'show-divs': showDivs }"
       >
         <h3 class="text-dark p-3">Invoice</h3>
         <h3 class="p-3 text-primary">#{{ invoice.id }}</h3>
@@ -30,7 +29,6 @@
                 <a
                   href="invoices/{{ invoice.id }}"
                   class="decoration-remove ms-3"
-                  (click)="showDivs()"
                 >
                   <i class="fa-solid fa-file-invoice-dollar fs-1"></i>
                   <p class="fs-4">#{{ invoice.id }}</p>
