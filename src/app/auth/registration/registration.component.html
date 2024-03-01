@@ -1,72 +1,158 @@
-<div class="bg container-fluid bg-black">
-  <div class="row px-5 d-flex justify-content-center">
-    <div class="col-6">
-      <div class="container text-bg-dark mt-5 rounded-2">
-        <form
-          class="fw-bold p-5"
-          #registerForm="ngForm"
-          (ngSubmit)="register(registerForm)"
-        >
-          <div class="mb-3">
-            <label for="name" class="form-label">Username</label>
-            <input
-              type="text"
-              name="username"
-              class="form-control bg-secondary border-0"
-              required
-              ngModel
-            />
-          </div>
-          <div class="mb-3">
-            <label for="name" class="form-label">Nome</label>
-            <input
-              type="text"
-              name="name"
-              class="form-control bg-secondary border-0"
-              required
-              ngModel
-            />
-          </div>
-          <div class="mb-3">
-            <label for="surname" class="form-label">Cognome</label>
-            <input
-              type="text"
-              name="surname"
-              class="form-control bg-secondary border-0"
-              required
-              ngModel
-            />
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email </label>
-            <input
-              type="email"
-              name="email"
-              class="form-control bg-secondary border-0"
-              required
-              ngModel
-            />
-          </div>
-          <div class="mb-4">
-            <label for="password" class="form-label">Password</label>
-            <input
-              type="password"
-              class="form-control bg-secondary border-0"
-              name="password"
-              required
-              ngModel
-            />
-          </div>
-          <div class="d-flex justify-content-center">
-            <button
-              type="submit"
-              class="btn btn-success px-5 fw-bold"
-              [disabled]="registerForm.invalid"
-            >
-              Registrati
-            </button>
-          </div>
-        </form>
+<div class="bg container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-8 bg-custom mt-5 rounded-4 py-5">
+      <div class="row">
+        <h2 class="px-5 text-white text-center">
+          Welcome to EnelG<span class="text-info">!</span>
+        </h2>
+        <p class="m-0 text-secondary text-center fs-6">
+          Already a member?
+          <span
+            id="register-redirect"
+            class="pointer text-info"
+            (click)="goLogin()"
+            >Sign-in here</span
+          >
+        </p>
+        <div class="col-12 d-flex justify-content-center">
+          <form
+            #registerForm="ngForm"
+            (ngSubmit)="register(registerForm)"
+            class="p-5 form-size w-100"
+          >
+            <div class="mb-3">
+              <label for="name" class="form-label text-info">Username</label>
+              <div class="position-relative">
+                <div class="position-absolute end-0 mt-1 me-2 z-1">
+                  <i class="fa-solid fa-id-card-clip text-info"></i>
+                </div>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control border-0"
+                  required
+                  ngModel
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label text-info">Name</label>
+              <div class="position-relative">
+                <div class="position-absolute end-0 mt-1 me-2 z-1">
+                  <i class="fa-solid fa-address-card text-info"></i>
+                </div>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control border-0"
+                  required
+                  ngModel
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="surname" class="form-label text-info">Surname</label>
+              <div class="position-relative">
+                <div class="position-absolute end-0 mt-1 me-2 z-1">
+                  <i class="fa-solid fa-address-card text-info"></i>
+                </div>
+                <input
+                  type="text"
+                  name="surname"
+                  class="form-control border-0"
+                  required
+                  ngModel
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label text-info">Email</label>
+              <div class="position-relative">
+                <div class="position-absolute end-0 mt-1 me-2 z-1">
+                  <i class="fa-solid fa-envelope text-info"></i>
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control border-0"
+                  required
+                  email
+                  ngModel
+                  [ngClass]="{
+                    'shake-horizontal':
+                    registerForm.controls['email'] && registerForm.controls['email'].errors?.['email'] && registerForm.controls['email'].touched
+                  }"
+                />
+                <div
+                  *ngIf="registerForm.controls['email'] && registerForm.controls['email'].errors?.['email'] && registerForm.controls['email'].touched"
+                >
+                  <span class="text-danger opacity-75"
+                    >Email is not valid!</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="password" class="form-label text-info"
+                >Password</label
+              >
+              <div class="position-relative">
+                <div class="position-absolute end-0 mt-1 me-2 z-1">
+                  <button
+                    type="button"
+                    class="btn p-0 m-0"
+                    (mousedown)="showPasswordOrNot()"
+                    [class.hide]="showPassword"
+                  >
+                    <i class="fa-solid fa-eye text-info"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn p-0 m-0"
+                    (mouseup)="showPasswordOrNot()"
+                    [class.hide]="!showPassword"
+                  >
+                    <i class="fa-solid fa-eye-slash text-info"></i>
+                  </button>
+                </div>
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  class="form-control border-0"
+                  name="password"
+                  [minlength]="8"
+                  required
+                  ngModel
+                  [ngClass]="{
+                    'shake-horizontal':
+                      registerForm.controls['password'] &&
+                      registerForm.controls['password'].touched &&
+                      registerForm.controls['password'].invalid
+                  }"
+                />
+                <div
+                  *ngIf="
+                    registerForm.controls['password'] &&
+                    registerForm.controls['password'].touched &&
+                    registerForm.controls['password'].invalid
+                  "
+                >
+                  <span class="text-danger opacity-75">
+                    Password must be at least 8 characters long!
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button
+                type="submit"
+                class="btn btn-outline-info px-5 fw-bold"
+                [disabled]="registerForm.invalid"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

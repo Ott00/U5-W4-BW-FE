@@ -1,3 +1,65 @@
 .bg {
-  height: calc(100vh - 65px);
+  height: calc(100vh - 72px);
+  background-color: #1f2125;
+}
+
+.bg-custom {
+  background-color: #1f2125;
+}
+
+.form-control {
+  color: white;
+  font-weight: 500;
+  background-color: #2e3137;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+#register-redirect {
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.form-size {
+  max-width: 600px;
+}
+
+.shake-horizontal {
+  animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-8px);
+  }
 }

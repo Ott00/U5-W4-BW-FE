@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
+  showPassword!: boolean;
   constructor(private authSrv: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -20,5 +21,13 @@ export class RegistrationComponent implements OnInit {
       alert(error);
       this.router.navigate(['/registration']);
     }
+  }
+
+  showPasswordOrNot() {
+    this.showPassword = !this.showPassword;
+  }
+
+  goLogin() {
+    this.router.navigate(['/login']);
   }
 }
