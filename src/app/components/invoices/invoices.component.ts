@@ -41,7 +41,6 @@ export class InvoicesComponent implements OnInit {
         console.log('User is admin');
       } else {
         this.admin = false;
-        window.alert('You do not have access');
       }
     });
   }

@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
   login(loginForm: NgForm) {
     // console.log(loginForm);
     try {
-      this.authSrv.login(loginForm.value).subscribe();
+      this.authSrv
+        .login(loginForm.value)
+        .subscribe(() => this.router.navigate(['/invoices']));
     } catch (error) {
       alert('Login errato!');
       console.log(error);

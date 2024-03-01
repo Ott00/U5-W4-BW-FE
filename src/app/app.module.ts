@@ -38,7 +38,7 @@ const routes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: 'login',
+    redirectTo: 'invoices',
   },
 ];
 
