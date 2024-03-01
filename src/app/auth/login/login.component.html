@@ -27,13 +27,25 @@
                   <i class="fa-solid fa-envelope text-info"></i>
                 </div>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control border-0"
                   id="email"
                   name="email"
                   ngModel
+                  email
                   required
+                  [ngClass]="{
+                    'shake-horizontal':
+                    loginForm.controls['email'] && loginForm.controls['email'].errors?.['email'] && loginForm.controls['email'].touched
+                  }"
                 />
+                <div
+                  *ngIf="loginForm.controls['email'] && loginForm.controls['email'].errors?.['email'] && loginForm.controls['email'].touched"
+                >
+                  <span class="text-danger opacity-75"
+                    >Email is not valid!</span
+                  >
+                </div>
               </div>
             </div>
             <div class="mb-3">
@@ -41,7 +53,7 @@
                 >Password</label
               >
               <div class="position-relative">
-                <div class="position-absolute end-0 mt-1 me-2">
+                <div class="position-absolute end-0 mt-1 me-2 z-1">
                   <button
                     type="button"
                     class="btn p-0 m-0"
@@ -67,15 +79,32 @@
                   [minlength]="8"
                   ngModel
                   required
+                  [ngClass]="{
+                    'shake-horizontal':
+                      loginForm.controls['password'] &&
+                      loginForm.controls['password'].touched &&
+                      loginForm.controls['password'].invalid
+                  }"
                 />
+                <div
+                  *ngIf="
+                    loginForm.controls['password'] &&
+                    loginForm.controls['password'].touched &&
+                    loginForm.controls['password'].invalid
+                  "
+                >
+                  <span class="text-danger opacity-75">
+                    Password must be at least 8 characters long!
+                  </span>
+                </div>
               </div>
             </div>
 
             <div class="d-flex justify-content-center">
               <button
                 type="submit"
-                class="btn btn-outline-info px-5 fw-bold"
                 [disabled]="loginForm.invalid"
+                class="btn btn-outline-info px-5 fw-bold"
               >
                 Login
               </button>

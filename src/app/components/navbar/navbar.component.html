@@ -14,7 +14,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="d-md-none">
+      <div class="d-md-none" *ngIf="userLoggedIn">
         <button class="btn btn-outline-danger h-100" (click)="logout()">
           <i class="bi bi-box-arrow-right"></i>
         </button>
@@ -22,7 +22,7 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav w-100">
-        <div class="d-flex justify-content-between">
+        <div class="d-md-flex">
           <a
             *ngIf="userLoggedIn"
             class="nav-link"

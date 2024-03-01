@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public showPassword!: boolean;
+  showPassword!: boolean;
   constructor(private authSrv: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
