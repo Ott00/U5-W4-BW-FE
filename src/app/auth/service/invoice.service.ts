@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
+import { NewInvoice } from '../interfaces/new-invoice';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,17 @@ export class InvoiceService {
       console.log(tokenParsed);
     }
     return this.http.get(`${this.apiUrl}/${invoiceId}`, { headers });
+  }
+
+  createInvoice(invoice: NewInvoice): Observable<any> {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+      console.log(tokenParsed);
+    }
+    return this.http.post<any>(`${this.apiUrl}`, invoice, { headers });
   }
 
   isAdmin(): Observable<boolean> {

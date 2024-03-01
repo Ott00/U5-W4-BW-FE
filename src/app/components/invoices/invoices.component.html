@@ -49,8 +49,13 @@
         <div class="flex-grow-1 ps-5">{{ invoice.client.phoneNumber }}</div>
 
         <div>
-          <button class="btn btn-primary">Button 1</button>
-          <button class="btn btn-secondary">Button 2</button>
+          <button
+            *ngIf="admin === true"
+            (click)="createInvoice()"
+            class="btn btn-primary"
+          >
+            New Invoice
+          </button>
         </div>
       </div>
     </div>

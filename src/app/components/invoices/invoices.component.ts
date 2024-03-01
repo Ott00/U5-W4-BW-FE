@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from 'src/app/auth/service/invoice.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { ActivatedRoute } from '@angular/router';
+import { NewInvoice } from 'src/app/auth/interfaces/new-invoice';
 
 @Component({
   selector: 'app-invoices',
@@ -11,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class InvoicesComponent implements OnInit {
   response!: any[];
   invoices!: any[];
+  admin = false;
 
   constructor(
     private InvoiceService: InvoiceService,
@@ -27,8 +29,10 @@ export class InvoicesComponent implements OnInit {
     });
     this.canActivate().subscribe((isAdmin) => {
       if (isAdmin) {
+        this.admin = true;
         console.log('User is admin');
       } else {
+        this.admin = false;
         window.alert('You do not have access');
       }
     });
@@ -46,6 +50,22 @@ export class InvoicesComponent implements OnInit {
     });
   }
 
+  createInvoice(): void {
+    const newInvoice: NewInvoice = {
+      email: 'fbuonocore6515@gmail.com',
+      invoice_status: 'Emitted',
+      amount: 100,
+    };
+
+    this.InvoiceService.createInvoice(newInvoice).subscribe(
+      (response) => {
+        console.log('Invoice created:', response);
+      },
+      (error) => {
+        console.error('Error creating invoice:', error);
+      }
+    );
+  }
   canActivate(): Observable<boolean> {
     return this.InvoiceService.isAdmin();
   }
