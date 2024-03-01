@@ -29,6 +29,7 @@ const routes: Route[] = [
   {
     path: 'user',
     component: UserComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

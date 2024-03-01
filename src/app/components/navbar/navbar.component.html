@@ -26,10 +26,10 @@
           <a
             *ngIf="userLoggedIn"
             class="nav-link"
-            [routerLink]="['/']"
+            [routerLink]="['/user']"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Back-Office
+            >Users
           </a>
           <a
             *ngIf="!userLoggedIn"

@@ -17,7 +17,7 @@ export class UserService {
     if (token) {
       const tokenParsed = JSON.parse(token).accessToken;
       headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
-      console.log(tokenParsed);
+      // console.log(tokenParsed);
     }
     return this.http.get(this.apiUrl, { headers });
   }
@@ -29,10 +29,26 @@ export class UserService {
       const tokenParsed = JSON.parse(token).accessToken;
       headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
     }
+
     return this.http.get<any>(`${this.apiUrl}/me`, { headers }).pipe(
       map((response) => {
-        return response.roles[0].role === 'ADMIN';
+        for (let i = 0; i < response.roles.length; i++) {
+          const element = response.roles[i].role;
+          if (element === 'ADMIN') {
+            return element;
+          } else return;
+        }
       })
     );
+  }
+
+  removeUser(id: string) {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+    }
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
 }

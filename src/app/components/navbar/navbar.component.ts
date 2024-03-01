@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 })
 export class NavbarComponent implements OnInit {
   userLoggedIn!: AuthData | null;
+  userIsAdmin!: boolean;
   constructor(private authSrv: AuthService) {}
 
   ngOnInit(): void {
