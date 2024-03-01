@@ -13,34 +13,53 @@
         *ngFor="let invoice of response"
         class="bg-white rounded-4 mt-5 flex-grow-1 box-square d-flex align-items-baseline p-3 shadow-inset-center"
       >
-        <h3 class="text-dark p-3">Invoice</h3>
-        <h3 class="p-3 text-primary">#{{ invoice.id }}</h3>
+        <h3 class="text-dark p-3 fw-bold">Invoice</h3>
+        <h3 class="p-3 text-azure fw-bold h2">#{{ invoice.id }}</h3>
         <h5 class="p-3 text-secondary">for</h5>
-        <h3 class="text-dark p-3">${{ invoice.amount }}</h3>
+        <h3 class="text-dark p-3 fw-bold">${{ invoice.amount }}.00</h3>
       </div>
       <div class="row flex-grow-1">
         <div class="col-12">
           <div
-            class="bg-white rounded-4 mt-5 h-100 box-square p-3 shadow-inset-center"
+            class="bg-white rounded-4 mt-5 h-100 box-square shadow-inset-center w-100"
           >
-            <div><h2 class="p-3">Select an invoice</h2></div>
-            <div class="row">
-              <div class="col-1 p-3 d-flex" *ngFor="let invoice of invoices">
-                <a
-                  href="invoices/{{ invoice.id }}"
-                  class="decoration-remove ms-3"
+            <div><h3 class="p-3 fw-bold">Invoice Archive</h3></div>
+            <div class="row bg-custom border-start border-end g-0">
+              <div class="col-12 d-flex justify-content-around">
+                <div
+                  class="p-3 mt-3 d-flex flex-column justify-content-center text-center"
+                  *ngFor="let invoice of invoices"
                 >
-                  <i class="fa-solid fa-file-invoice-dollar fs-1"></i>
-                  <p class="fs-4">#{{ invoice.id }}</p>
-                </a>
-              </div>
-              <div *ngIf="page < totalPages - 1">
-                <button (click)="loadNextPage()">Next</button>
-              </div>
-              <div *ngIf="page != 0">
-                <button (click)="loadPreviousPage()">Previous</button>
+                  <a
+                    href="invoices/{{ invoice.id }}"
+                    class="decoration-remove ms-3"
+                  >
+                    <i
+                      class="fa-solid fa-file-invoice-dollar fs-1 text-azure"
+                    ></i>
+                    <p class="fs-6 text-light">{{ invoice.id }}</p>
+                  </a>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="d-flex mt-1">
+          <div class="ms-2" *ngIf="page != 0">
+            <button
+              (click)="loadPreviousPage()"
+              class="btn btn-dark rounded-5 overflow-hidden"
+            >
+              <i class="fa-solid fa-angle-left"></i>
+            </button>
+          </div>
+          <div *ngIf="page < totalPages - 1" class="ms-2">
+            <button
+              (click)="loadNextPage()"
+              class="btn bg-azure rounded-5 overflow-hidden"
+            >
+              <i class="fa-solid fa-angle-right"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -49,20 +68,31 @@
       <div
         class="bg-white rounded-4 mt-5 h-100 box-square d-flex flex-column shadow-inset-center"
       >
-        <h3 class="text-dark p-4 flex-grow-1">Client</h3>
-        <div class="flex-grow-1 ps-5">{{ invoice.client.businessName }}</div>
-        <div class="flex-grow-1 ps-5">{{ invoice.client.email }}</div>
-        <div class="flex-grow-1 ps-5">{{ invoice.client.vatNumber }}</div>
-        <div class="flex-grow-1 ps-5">{{ invoice.client.type }}</div>
-        <div class="flex-grow-1 ps-5">{{ invoice.client.phoneNumber }}</div>
+        <h3 class="text-dark p-4 fs-2 fw-bold flex-grow-1">Client</h3>
+        <div class="flex-grow-1 ps-5 fw-bold">
+          <i class="fa-solid fa-user pe-2"></i>{{ invoice.client.businessName }}
+        </div>
+        <div class="flex-grow-1 ps-5">
+          <i class="fa-solid fa-envelope pe-2"></i>{{ invoice.client.email }}
+        </div>
+        <div class="flex-grow-1 ps-5">
+          <i class="fa-solid fa-building-user pe-2"></i
+          >{{ invoice.client.vatNumber }}
+        </div>
+        <div class="flex-grow-1 ps-5">
+          <i class="fa-solid fa-tags pe-2"></i>{{ invoice.client.type }}
+        </div>
+        <div class="flex-grow-1 ps-5 fst-italic">
+          <i class="fa-solid fa-phone pe-2"></i>{{ invoice.client.phoneNumber }}
+        </div>
 
         <div>
           <button
             *ngIf="admin === true"
             (click)="createInvoice()"
-            class="btn btn-primary"
+            class="bg-azure ms-auto border-0 custom-rounded p-1"
           >
-            New Invoice
+            <i class="fa-solid fa-file-invoice-dollar fs-4 text-dark p-3"></i>
           </button>
         </div>
       </div>
