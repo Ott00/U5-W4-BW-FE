@@ -51,4 +51,15 @@ export class UserService {
     }
     return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
+
+  getProfile(): Observable<any> {
+    const token = localStorage.getItem('user');
+    let headers = new HttpHeaders();
+    if (token) {
+      const tokenParsed = JSON.parse(token).accessToken;
+      headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
+      console.log(tokenParsed);
+    }
+    return this.http.get(this.apiUrl, { headers });
+  }
 }

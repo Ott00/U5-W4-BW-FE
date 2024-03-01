@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { InvoicesComponent } from './components/invoices/invoices.component';
 import { UserComponent } from './components/user/user.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Route[] = [
   {
@@ -37,6 +39,11 @@ const routes: Route[] = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'me',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: '**',
     redirectTo: 'login',
   },
@@ -50,6 +57,7 @@ const routes: Route[] = [
     RegistrationComponent,
     InvoicesComponent,
     UserComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +65,7 @@ const routes: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
