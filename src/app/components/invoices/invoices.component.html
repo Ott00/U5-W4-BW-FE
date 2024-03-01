@@ -8,12 +8,10 @@
   ></div>
 
   <div class="row">
-    <div
-      class="col-8 d-flex flex-column mx-5 position-relative slide-in-fwd-center"
-    >
+    <div class="col-8 d-flex flex-column mx-5 position-relative">
       <div
         *ngFor="let invoice of response"
-        class="bg-white rounded-4 mt-5 flex-grow-1 box-square d-flex align-items-baseline p-3"
+        class="bg-white rounded-4 mt-5 flex-grow-1 box-square d-flex align-items-baseline p-3 scale-up-left"
       >
         <h3 class="text-dark p-3">Invoice</h3>
         <h3 class="p-3 text-primary">#{{ invoice.id }}</h3>
@@ -22,7 +20,9 @@
       </div>
       <div class="row flex-grow-1">
         <div class="col-12">
-          <div class="bg-white rounded-4 mt-5 h-100 box-square p-3">
+          <div
+            class="bg-white rounded-4 mt-5 h-100 box-square p-3 scale-up-left"
+          >
             <div><h2 class="p-3">Select an invoice</h2></div>
             <div class="row">
               <div class="col-1 p-3 d-flex" *ngFor="let invoice of invoices">
@@ -40,7 +40,9 @@
       </div>
     </div>
     <div class="col-3" *ngFor="let invoice of response">
-      <div class="bg-white rounded-4 mt-5 h-100 box-square d-flex flex-column">
+      <div
+        class="bg-white rounded-4 mt-5 h-100 box-square d-flex flex-column scale-up-left"
+      >
         <h3 class="text-dark p-4 flex-grow-1">Client</h3>
         <div class="flex-grow-1 ps-5">{{ invoice.client.businessName }}</div>
         <div class="flex-grow-1 ps-5">{{ invoice.client.email }}</div>
