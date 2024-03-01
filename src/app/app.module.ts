@@ -10,6 +10,7 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { InvoicesComponent } from './components/invoices/invoices.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Route[] = [
   {
@@ -31,8 +32,13 @@ const routes: Route[] = [
     component: RegistrationComponent,
   },
   {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: '**',
-    redirectTo: 'invoices',
+    redirectTo: 'login',
   },
 ];
 
@@ -43,6 +49,7 @@ const routes: Route[] = [
     LoginComponent,
     RegistrationComponent,
     InvoicesComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

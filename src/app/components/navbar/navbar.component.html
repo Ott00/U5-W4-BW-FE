@@ -31,8 +31,19 @@
             [routerLink]="['/invoices']"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Invoices
-          </a>
+          >
+            Invoices</a
+          >
+
+          <a
+            *ngIf="userLoggedIn"
+            class="nav-link"
+            [routerLink]="['/user']"
+            routerLinkActive="active"
+          >
+            User</a
+          >
+
           <a
             *ngIf="!userLoggedIn"
             class="nav-link"
