@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class InvoicesComponent implements OnInit {
   response!: any[];
   invoices!: any[];
-
+  showDiv: boolean = false;
   constructor(
     private InvoiceService: InvoiceService,
     private activatedRoute: ActivatedRoute
@@ -48,5 +48,9 @@ export class InvoicesComponent implements OnInit {
 
   canActivate(): Observable<boolean> {
     return this.InvoiceService.isAdmin();
+  }
+
+  showDivs() {
+    this.showDiv = true;
   }
 }
