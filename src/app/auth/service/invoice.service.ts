@@ -12,7 +12,7 @@ export class InvoiceService {
   private userUrl = 'http://localhost:4201/users';
 
   constructor(private http: HttpClient) {}
-  getInvoices(): Observable<any> {
+  getInvoices(page: number, size: number): Observable<any> {
     const token = localStorage.getItem('user');
     let headers = new HttpHeaders();
     if (token) {
@@ -20,7 +20,9 @@ export class InvoiceService {
       headers = headers.append('Authorization', `Bearer ${tokenParsed}`);
       console.log(tokenParsed);
     }
-    return this.http.get(this.apiUrl, { headers });
+    return this.http.get(`${this.apiUrl}?page=${page}&size=${size}`, {
+      headers,
+    });
   }
 
   getInvoiceById(invoiceId: string): Observable<any> {

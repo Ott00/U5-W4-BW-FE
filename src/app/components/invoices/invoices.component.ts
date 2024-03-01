@@ -13,11 +13,19 @@ export class InvoicesComponent implements OnInit {
   response!: any[];
   invoices!: any[];
   admin = false;
+  page!: number;
+  size!: number;
+  totalElements!: number;
+  totalPages: number;
 
   constructor(
     private InvoiceService: InvoiceService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.page = 0;
+    this.size = 10;
+    this.totalPages = 1;
+  }
 
   ngOnInit(): void {
     this.getInvoices();
@@ -39,9 +47,13 @@ export class InvoicesComponent implements OnInit {
   }
 
   getInvoices(): void {
-    this.InvoiceService.getInvoices().subscribe((response: any) => {
-      this.invoices = response.content;
-    });
+    this.InvoiceService.getInvoices(this.page, this.size).subscribe(
+      (response: any) => {
+        this.invoices = response.content;
+        this.totalElements = response.totalElements;
+        this.totalPages = response.totalPages;
+      }
+    );
   }
 
   getInvoiceById(invoiceId: string): void {
@@ -68,5 +80,13 @@ export class InvoicesComponent implements OnInit {
   }
   canActivate(): Observable<boolean> {
     return this.InvoiceService.isAdmin();
+  }
+  loadNextPage(): void {
+    this.page++;
+    this.getInvoices();
+  }
+  loadPreviousPage(): void {
+    this.page--;
+    this.getInvoices();
   }
 }

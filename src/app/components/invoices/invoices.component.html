@@ -34,6 +34,12 @@
                   <p class="fs-4">#{{ invoice.id }}</p>
                 </a>
               </div>
+              <div *ngIf="page < totalPages - 1">
+                <button (click)="loadNextPage()">Next</button>
+              </div>
+              <div *ngIf="page != 0">
+                <button (click)="loadPreviousPage()">Previous</button>
+              </div>
             </div>
           </div>
         </div>
